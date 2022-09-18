@@ -31,6 +31,7 @@ const Draw: NextPage = () => {
   };
 
   const clearCanvas = () => {
+    if (!canvasRef.current) return;
     contextRef.current?.clearRect(
       0,
       0,
