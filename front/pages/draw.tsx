@@ -13,7 +13,7 @@ const Draw: NextPage = () => {
     const context = canvas.getContext("2d");
     if (!context) return;
     context.lineCap = "round";
-    context.strokeStyle = "white";
+    context.strokeStyle = "black";
     context.lineWidth = 3;
     contextRef.current = context;
   }, []);
@@ -26,11 +26,13 @@ const Draw: NextPage = () => {
   };
 
   const handleMouseUp = () => {
+    // отправить запрос на бек
     contextRef.current?.closePath();
     setIsDrawing(false);
   };
 
   const clearCanvas = () => {
+    // отправить очистку на бек
     if (!canvasRef.current) return;
     contextRef.current?.clearRect(
       0,
@@ -49,19 +51,19 @@ const Draw: NextPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
-      <div className="flex flex-col w-[1000px] h-12 items-center justify-center">
+      <div className="flex flex-col w-[700px] h-12 items-center justify-center">
         <button className="self-end" onClick={clearCanvas}>
           <TrashIcon height={24} />
         </button>
       </div>
       <canvas
-        className="border border-white"
+        className="border border-black"
         ref={canvasRef}
         onMouseMove={handleMouseMove}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
-        height={500}
-        width={1000}
+        height={700}
+        width={700}
       ></canvas>
     </div>
   );
